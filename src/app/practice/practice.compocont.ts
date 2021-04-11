@@ -13,10 +13,6 @@ export class Practicecomponent implements OnInit {
     words : Array<any>
     ngOnInit(): void {
         this.words = this.DataService.getAllWord()
-        console.log(this.words)
     }
-    
-    goDetail(word : string){
-        this.router.navigate(["/practice", word]);
-    }
+      
 }

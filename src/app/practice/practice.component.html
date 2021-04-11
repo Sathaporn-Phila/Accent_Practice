@@ -1,4 +1,3 @@
-<StackLayout>
-    <Button *ngFor="let word of words" text="{{ word.word }}" ></Button>
-    
+<StackLayout +>
+    <Button *ngFor="let word of words" text="{{ word.word }}"  (tap)="goDetail(word.word)"></Button>
 </StackLayout>

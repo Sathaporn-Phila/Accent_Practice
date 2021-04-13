@@ -2,7 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
 import { NativeScriptModule } from '@nativescript/angular'
 
 import {SpeechRecognition } from 'nativescript-speech-recognition'
-
+import {TNSTextToSpeech, SpeakOptions} from 'nativescript-texttospeech'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 
@@ -13,7 +13,7 @@ import { DetailComponent } from './practice/detail.component'
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, AppRoutingModule],
   declarations: [AppComponent, Homepagecomponent,Practicecomponent,DetailComponent],
-  providers: [SpeechRecognition],
+  providers: [SpeechRecognition,TNSTextToSpeech],
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

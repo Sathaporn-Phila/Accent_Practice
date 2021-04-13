@@ -4,15 +4,17 @@ import { ActivatedRoute } from "@angular/router";
 import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
 
+
 @Component({
     selector: "detail",
     templateUrl: "./detail.component.html",
 })
+
 export class DetailComponent implements OnInit {
     options : SpeechRecognitionOptions;
     word: any;
     yourWord =  "reading";
-    constructor(  private speech : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService) {
+    constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService) {
         this.word = {};
         this.options = {
             locale : 'en-US',
@@ -29,6 +31,14 @@ export class DetailComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.word = this.data.getWord(params["word"]);
         });
+        this.speech_listen.available().then(
+          (available: boolean) => console.log(available ? "YES!" : "NO"),
+          (err: string) => console.log(err)
+        );
+        this.speech_listen.requestPermission().then((granted: boolean) => {
+          console.log("Granted? " + granted);
+        });
+        
     }
 
     back() {
@@ -36,7 +46,7 @@ export class DetailComponent implements OnInit {
     }
 
     triggerListening(){
-        this.speech.available().then(result =>{
+        this.speech_listen.available().then(result =>{
           result ? this.startListening() : alert('SpeechRecognition is not ทำงาน');
         }, error => {
           console.error(error);
@@ -44,7 +54,7 @@ export class DetailComponent implements OnInit {
     }
 
     startListening(){
-        this.speech.startListening(this.options).then(() => {
+        this.speech_listen.startListening(this.options).then(() => {
           console.log("Started")
           console.log(this.yourWord);
         },error => {
@@ -53,10 +63,13 @@ export class DetailComponent implements OnInit {
     }
 
     stopListening(){
-        this.speech.stopListening().then(() => {
+        this.speech_listen.stopListening().then(() => {
           console.log("stop")
         },error => {
           console.error(error);
         })
+    }
+    test_tts(){
+      this.data.sound(this.word.word);
     }
 }

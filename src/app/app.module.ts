@@ -9,10 +9,11 @@ import { AppComponent } from './app.component'
 import { Homepagecomponent } from './homepage/homepage.component'
 import { Practicecomponent } from './practice/practice.component'
 import { DetailComponent } from './practice/detail.component'
+import { Challengescomponent } from './challenges/challenges.component'
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, AppRoutingModule],
-  declarations: [AppComponent, Homepagecomponent,Practicecomponent,DetailComponent],
+  declarations: [AppComponent , Homepagecomponent , Practicecomponent , DetailComponent , Challengescomponent],
   providers: [SpeechRecognition,TNSTextToSpeech],
   schemas: [NO_ERRORS_SCHEMA],
 })

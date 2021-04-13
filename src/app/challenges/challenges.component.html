@@ -1,0 +1,11 @@
+<StackLayout>
+    <!--<label [text]="timeLeft"></label>*-->
+    <label [text]="word"></label>
+    <label [text]="defi"></label>
+    <label [text]="yourWord"></label>
+    <button text="Listen" (tap)="test_tts()"></button> 
+    <button (tap)="triggerListening()" text="Speak"></button>
+    <button (tap)="stopListening()" text="OK" ></button>
+    <button text="Next" (tap)="nextButton()" *ngIf="isShow === true"></button>
+
+</StackLayout>

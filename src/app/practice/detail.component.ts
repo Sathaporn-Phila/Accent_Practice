@@ -38,7 +38,6 @@ export class DetailComponent implements OnInit {
         this.speech_listen.requestPermission().then((granted: boolean) => {
           console.log("Granted? " + granted);
         });
-        console.log(this.word.word)
         
     }
 
@@ -76,5 +75,9 @@ export class DetailComponent implements OnInit {
     goEdit(){
       this.router.navigate(["/edit",this.word.word])
 
+    }
+    deleteWord(){
+      this.data.delete(this.word.word)
+      this.back()
     }
 }

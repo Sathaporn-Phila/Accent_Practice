@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone } from "@angular/core";
+import { Location } from "@angular/common";
 
 import { DataService } from "../services/data.service";
 
@@ -8,7 +9,7 @@ import { DataService } from "../services/data.service";
 })
 
 export class AddWordComponent implements OnInit {
-    constructor(private DataService: DataService) {
+    constructor(private DataService: DataService, private location: Location) {
     }
 
     ngOnInit() {        
@@ -17,6 +18,7 @@ export class AddWordComponent implements OnInit {
     add(word: string, definition: string){
         if(word != "" && definition != ""){
             this.DataService.add(word, definition)
+            this.location.back();
         }
     }
 }

@@ -37,6 +37,7 @@ export class DataService {
     this.tts.speak(this.speakOptions).then(()=>{
     })
   }
-
-
+  add(word:string, definition:string){
+    this.Datas.push({word: word, defi: definition})
+  }
 }

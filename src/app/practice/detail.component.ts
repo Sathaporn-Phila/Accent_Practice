@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { Location } from "@angular/common";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
 
@@ -14,7 +14,7 @@ export class DetailComponent implements OnInit {
     options : SpeechRecognitionOptions;
     word: any;
     yourWord =  "reading";
-    constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService) {
+    constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService, private router:Router) {
         this.word = {};
         this.options = {
             locale : 'en-US',
@@ -38,6 +38,7 @@ export class DetailComponent implements OnInit {
         this.speech_listen.requestPermission().then((granted: boolean) => {
           console.log("Granted? " + granted);
         });
+        console.log(this.word.word)
         
     }
 
@@ -71,5 +72,9 @@ export class DetailComponent implements OnInit {
     }
     test_tts(){
       this.data.sound(this.word.word);
+    }
+    goEdit(){
+      this.router.navigate(["/edit",this.word.word])
+
     }
 }

@@ -40,4 +40,19 @@ export class DataService {
   add(word:string, definition:string){
     this.Datas.push({word: word, defi: definition})
   }
+  edit(word:string, nWord:string, definition:string){
+    for(let i =0;i<this.Datas.length;i++){
+      if(this.Datas[i].word === word){
+        this.Datas[i].word = nWord
+        this.Datas[i].defi = definition
+      }
+    }
+  }
+  delete(word:string){
+    for(let i =0;i<this.Datas.length;i++){
+      if(this.Datas[i].word === word){
+        this.Datas.splice(i,1)
+      }
+    }
+  }
 }

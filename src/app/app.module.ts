@@ -11,11 +11,12 @@ import { Practicecomponent } from './practice/practice.component'
 import { DetailComponent } from './practice/detail.component'
 import { Challengescomponent } from './challenges/challenges.component'
 import { AddWordComponent } from './addWord/addWord.component'
+import { EditWordComponent } from './editWord/editWord.component'
 
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, AppRoutingModule],
-  declarations: [AppComponent , Homepagecomponent , Practicecomponent , DetailComponent , Challengescomponent, AddWordComponent],
+  declarations: [AppComponent , Homepagecomponent , Practicecomponent , DetailComponent , Challengescomponent, AddWordComponent, EditWordComponent],
   providers: [SpeechRecognition,TNSTextToSpeech],
   schemas: [NO_ERRORS_SCHEMA],
 })

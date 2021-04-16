@@ -76,6 +76,7 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
       this.randomWord()
       this.isShow=!this.isShow
       this.startTimer()
+      this.yourWord = ""
     }
 
     triggerListening(){
@@ -105,10 +106,12 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
         })
         console.log(this.yourWord.toLowerCase());
         console.log(this.word.toLowerCase());
-        if ( this.yourWord.toLowerCase() === this.word.toLowerCase()){
-            this.isShow = !this.isShow;
-            clearInterval(this.interval)
-            this.timeLeft = 60;
+        if (this.yourWord != undefined){
+          if ( this.yourWord.toLowerCase() === this.word.toLowerCase() ){
+              this.isShow = !this.isShow;
+              clearInterval(this.interval)
+              this.timeLeft = 60;
+          }
         }
     }
 

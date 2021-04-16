@@ -14,7 +14,7 @@ export class DetailComponent implements OnInit {
     public picture: any;
     options : SpeechRecognitionOptions;
     word: any;
-    yourWord =  "reading";
+    yourWord =  "ลองกดปุ่มพูดดูสิ";
     constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService, private router:Router) {
         this.picture = "~/app/practice/black.png";
         this.word = {};

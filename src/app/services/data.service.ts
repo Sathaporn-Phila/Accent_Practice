@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
+import * as AppSettings from '@nativescript/core/application-settings'
 export interface Data {
     word: string
     defi: string
@@ -17,6 +18,16 @@ export class DataService {
   )
   speakOptions:SpeakOptions;
   constructor(private tts:TNSTextToSpeech){
+    AppSettings.getBoolean("firstRun");
+    // ถ้า run ครั้งเเรก
+    if (AppSettings.getBoolean("firstRun") === undefined || AppSettings.getBoolean("firstRun") === null){
+      AppSettings.setString("myDatas", JSON.stringify(this.Datas));
+      AppSettings.setBoolean("firstRun", false);
+    }else{// ถ้าไม่ใช่ครั้งเเรก ><
+      this.Datas = JSON.parse(AppSettings.getString("myDatas"))
+    }
+
+
   }
   getAllWord(): Array<Data> {
     return this.Datas
@@ -36,9 +47,11 @@ export class DataService {
     }
     this.tts.speak(this.speakOptions).then(()=>{
     })
+    //console.log(AppSettings.getBoolean("firstRun"));
   }
   add(word:string, definition:string){
     this.Datas.push({word: word, defi: definition})
+    AppSettings.setString("myDatas", JSON.stringify(this.Datas));
   }
   edit(word:string, nWord:string, definition:string){
     for(let i =0;i<this.Datas.length;i++){
@@ -47,6 +60,7 @@ export class DataService {
         this.Datas[i].defi = definition
       }
     }
+    AppSettings.setString("myDatas", JSON.stringify(this.Datas));
   }
   delete(word:string){
     for(let i =0;i<this.Datas.length;i++){
@@ -54,5 +68,6 @@ export class DataService {
         this.Datas.splice(i,1)
       }
     }
+    AppSettings.setString("myDatas", JSON.stringify(this.Datas));
   }
 }

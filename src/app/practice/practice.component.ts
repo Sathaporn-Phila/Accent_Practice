@@ -8,8 +8,11 @@ import { DataService } from '../services/data.service'
     templateUrl: './practice.component.html'
   })
 export class Practicecomponent implements OnInit {
-      
-    constructor(private DataService: DataService , private router: Router) {}
+    
+    
+    constructor(private DataService: DataService , private router: Router) {
+        
+    }
     words : Array<any>
     ngOnInit(): void {
         this.words = this.DataService.getAllWord()

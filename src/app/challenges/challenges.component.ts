@@ -36,14 +36,11 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
         this.words = this.DataService.getAllWord()
         if(this.firstStart){
             this.randomWord()
+            this.startTimer()
             this.firstStart = false;
         }
-        /*if(this.firstStart){
-            this.startTimer();
-            this.firstStart = false;
-        }*/
     }
-    /*timeLeft: number = 60;
+    timeLeft: number = 60;
     interval;
 
     startTimer() {
@@ -55,7 +52,7 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
             clearInterval(this.interval);
         }
         },1000)
-    }*/
+    }
     getRandomInt(max) {
       return Math.floor(Math.random() * max);
     }
@@ -78,6 +75,7 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
     nextButton(){
       this.randomWord()
       this.isShow=!this.isShow
+      this.startTimer()
     }
 
     triggerListening(){
@@ -109,6 +107,8 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
         console.log(this.word.toLowerCase());
         if ( this.yourWord.toLowerCase() === this.word.toLowerCase()){
             this.isShow = !this.isShow;
+            clearInterval(this.interval)
+            this.timeLeft = 60;
         }
     }
 

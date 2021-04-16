@@ -3,7 +3,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
-
+import { isAvailable, requestCameraPermissions, takePicture } from '@nativescript/camera';
 
 @Component({
     selector: "detail",
@@ -11,10 +11,12 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
 })
 
 export class DetailComponent implements OnInit {
+    public picture: any;
     options : SpeechRecognitionOptions;
     word: any;
     yourWord =  "reading";
     constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService, private router:Router) {
+        this.picture = "~/app/practice/black.png";
         this.word = {};
         this.options = {
             locale : 'en-US',
@@ -28,6 +30,19 @@ export class DetailComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (isAvailable()) {
+          requestCameraPermissions()
+            .then(
+              fulfilled => {
+                console.log('requestCameraPermissions fulfilled.');
+              },
+              rejected => {
+                console.log('No camera permissions set.');
+              }
+            )
+        }else {
+          console.log('No camera detected of available.');
+        }
         this.route.params.subscribe(params => {
             this.word = this.data.getWord(params["word"]);
         });
@@ -40,7 +55,7 @@ export class DetailComponent implements OnInit {
         });
         
     }
-
+    
     back() {
         this.location.back();
     }
@@ -79,5 +94,15 @@ export class DetailComponent implements OnInit {
     deleteWord(){
       this.data.delete(this.word.word)
       this.back()
+    }
+    capture(): void {
+      var options = { width: 300, height: 300, keepAspectRatio: true, saveToGallery: false };
+  
+      takePicture(options)
+        .then(imageAsset => {
+          this.picture = imageAsset;
+        }).catch(function (err) {
+          console.log("Error -> " + err.message);
+        });
     }
 }

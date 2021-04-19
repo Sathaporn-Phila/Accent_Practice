@@ -7,6 +7,7 @@ import { DataService } from "../services/data.service";
 @Component({
     selector: "editWord",
     templateUrl: "./editWord.component.html",
+    styleUrls: ["./editWord.component.css"]
 })
 
 export class EditWordComponent implements OnInit {

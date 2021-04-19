@@ -1,0 +1,24 @@
+Button{
+    margin-bottom: 10;
+    border-radius: 50;
+    border-width: 5;
+}
+.practiceButton{
+    background-color: royalblue;
+    color : white;
+}
+.challengeButton{
+    background-color: royalblue;
+    color: white;
+}
+.addWordButton{
+    background-color: royalblue;
+    color: white;
+}
+.creditButton{
+    background-color: royalblue;
+    color: white;
+}
+Button:active{
+    background-color: salmon;
+}

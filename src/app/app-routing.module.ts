@@ -8,6 +8,8 @@ import { DetailComponent } from './practice/detail.component'
 import { Challengescomponent } from './challenges/challenges.component'
 import  { AddWordComponent } from './addWord/addWord.component'
 import { EditWordComponent} from './editWord/editWord.component'
+import {CreditComponent} from './credit/credit.component'
+
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
   { path: 'homepage', component: Homepagecomponent },
@@ -15,7 +17,8 @@ const routes: Routes = [
   { path: 'challenges', component: Challengescomponent },
   { path: 'edit/:word', component: EditWordComponent },
   { path: 'practice', component: Practicecomponent },
-  { path: 'practice/:word', component: DetailComponent}
+  { path: 'practice/:word', component: DetailComponent},
+  { path: 'credit', component: CreditComponent}
 ]
 
 @NgModule({

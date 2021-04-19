@@ -1,0 +1,13 @@
+button{
+    margin-bottom: 10;
+    border-radius: 50;
+    border-width: 5;
+    background-color: royalblue;
+}
+button:active{
+    background-color: salmon;
+}
+label{
+    font-size: 20px;
+    text-align: center;
+}

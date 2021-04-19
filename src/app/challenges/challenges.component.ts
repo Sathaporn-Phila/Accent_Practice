@@ -6,7 +6,8 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
 
 @Component({
     selector: 'ns-challenges',
-    templateUrl: './challenges.component.html'
+    templateUrl: './challenges.component.html',
+    styleUrls: ["./challenges.component.css"]
   })
   export class Challengescomponent implements OnInit {
     words : Array<any>
@@ -19,7 +20,7 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
     options : SpeechRecognitionOptions;
     yourWord : string;
     temp :  Array<any>
-    constructor(private speech_listen : SpeechRecognition , private DataService: DataService) {
+    constructor(private speech_listen : SpeechRecognition , private DataService: DataService,private router:Router) {
         this.options = {
             locale : 'en-US',
             onResult: (transcription: SpeechRecognitionTranscription) =>{
@@ -40,16 +41,19 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
             this.firstStart = false;
         }
     }
-    timeLeft: number = 60;
+    timeLeft: number = 5;
     interval;
 
     startTimer() {
         this.interval = setInterval(() => {
+          console.log(this.timeLeft)
         if(this.timeLeft > 0) {
             this.timeLeft--;
         } else {
             this.timeLeft = 60;
+            alert("Time end");
             clearInterval(this.interval);
+            
         }
         },1000)
     }

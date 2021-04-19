@@ -5,7 +5,8 @@ import { DataService } from '../services/data.service'
 
 @Component({
     selector: 'ns-practice',
-    templateUrl: './practice.component.html'
+    templateUrl: './practice.component.html',
+    styleUrls: ["./practice.component.css"]
   })
 export class Practicecomponent implements OnInit {
     

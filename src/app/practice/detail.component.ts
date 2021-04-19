@@ -8,6 +8,7 @@ import { isAvailable, requestCameraPermissions, takePicture } from '@nativescrip
 @Component({
     selector: "detail",
     templateUrl: "./detail.component.html",
+    styleUrls: ["./detail.component.css"]
 })
 
 export class DetailComponent implements OnInit {
@@ -85,6 +86,7 @@ export class DetailComponent implements OnInit {
         })
     }
     test_tts(){
+      console.log(this.word.word);
       this.data.sound(this.word.word);
     }
     goEdit(){

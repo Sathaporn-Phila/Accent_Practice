@@ -1,0 +1,16 @@
+button{
+    margin-bottom: 10;
+    border-radius: 50;
+    border-width: 5;
+    color: royalblue;
+}
+button:active{
+    margin-bottom: 10;
+    border-radius: 50;
+    border-width: 5;
+    color: salmon;
+}
+label{
+    color: navy;
+    font-size: 20px;
+}

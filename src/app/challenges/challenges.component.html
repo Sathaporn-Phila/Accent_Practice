@@ -8,7 +8,7 @@
     <label [text]="labelWord"></label>
     <label [text]="labelDefinition"></label>
     <label [text]="yourWord"></label>
-    <button text="🔈" (tap)="test_tts()"></button> 
+    <button text="🔊" (tap)="test_tts()"></button> 
     <button (tap)="triggerListening()" text="🎙"></button>
     <button text="Next" (tap)="nextButton()" *ngIf="isShow === true"></button>
 </StackLayout>

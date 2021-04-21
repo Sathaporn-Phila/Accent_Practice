@@ -3,6 +3,7 @@ button{
     border-radius: 50;
     border-width: 5;
     color: royalblue;
+    font-size: 20px;
 }
 button:active{
     margin-bottom: 10;

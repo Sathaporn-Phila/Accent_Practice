@@ -5,6 +5,7 @@ import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
 import { isAvailable, requestCameraPermissions, takePicture } from '@nativescript/camera';
 import { knownFolders,ImageSource} from '@nativescript/core';
+import { Dialogs } from "@nativescript/core";
 import * as application from "@nativescript/core/application";
 
 @Component({
@@ -115,8 +116,19 @@ export class DetailComponent implements OnInit {
 
     }
     deleteWord(){
-      this.data.delete(this.word.word)
-      this.back()
+      Dialogs.confirm({
+        title: "Confirm Deleting",
+        message: "Confirm to delete word",
+        cancelButtonText: "Cancel",
+        okButtonText: "Comfirm"
+      }).then(r =>{
+        console.log(r);
+        if(r){
+          clearInterval(this.interval)
+          this.data.delete(this.word.word)
+          this.back()
+        }
+      });   
     }
     capture(): void {
       var options = { width: 300, height: 300, keepAspectRatio: true, saveToGallery: false };

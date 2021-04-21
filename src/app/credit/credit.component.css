@@ -1,8 +1,15 @@
 label{
     text-align: center;
     font-size: 20;
+    color: navy;
 }
 .backButton{
     font-size: 30px;
     margin-top: -5;
+}
+.underline{
+    text-align: center;
+    font-size: 20;
+    text-decoration: underline;
+    color: navy;
 }

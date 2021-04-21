@@ -4,6 +4,7 @@ Button{
     border-width: 5;
     background-color: royalblue;
     color: white;
+    font-size: 20px;
 }
 Button:active{
     background-color: salmon;

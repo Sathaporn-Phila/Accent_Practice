@@ -19,7 +19,6 @@ export class EditWordComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.word = this.DataService.getWord(params["word"]);
         });
-        console.log(this.word.word)
     }
     
     edit(nWord:string, definition:string){

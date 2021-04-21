@@ -65,8 +65,8 @@ export class DetailComponent implements OnInit {
     }
     
     back() {
-        this.location.back();
-    }
+      this.location.back();
+  }
 
     triggerListening(){
         this.speech_listen.available().then(result =>{
@@ -113,7 +113,7 @@ export class DetailComponent implements OnInit {
           
           ImageSource.fromAsset(imageAsset).then(function(imageSource){
             var folder = knownFolders.documents();
-            var path = folder.getFolder("asd").getFile("path.jpg");
+            var path = folder.getFolder("wordImage").getFile(that.word.word + String((new Date()).getTime()) + ".jpg");
             console.log(path.path)
             imageSource.saveToFile(path.path, "jpg");
 

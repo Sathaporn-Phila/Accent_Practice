@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { DataService } from '../services/data.service'
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
-
+import { Location } from "@angular/common";
 @Component({
     selector: 'ns-challenges',
     templateUrl: './challenges.component.html',
@@ -16,11 +16,11 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
     defi: string;
     index: number;
     isShow = false ;
-    firstStart = true;
     options : SpeechRecognitionOptions;
     yourWord : string;
     temp :  Array<any>
-    constructor(private speech_listen : SpeechRecognition , private DataService: DataService,private router:Router) {
+    yourScore = 0;
+    constructor(private location: Location,private speech_listen : SpeechRecognition , private DataService: DataService,private router:Router) {
         this.options = {
             locale : 'en-US',
             onResult: (transcription: SpeechRecognitionTranscription) =>{
@@ -35,28 +35,34 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
     
     ngOnInit(): void {
         this.words = this.DataService.getAllWord()
-        if(this.firstStart){
-            this.randomWord()
-            this.startTimer()
-            this.firstStart = false;
-        }
+        this.randomWord()
+        this.startTimer()
     }
-    timeLeft: number = 5;
+    timeLeft: number = 30;
     interval;
 
     startTimer() {
+        clearInterval(this.interval)
         this.interval = setInterval(() => {
           console.log(this.timeLeft)
         if(this.timeLeft > 0) {
             this.timeLeft--;
+            if (this.yourWord != undefined){
+              if ( this.yourWord.toLowerCase() === this.word.toLowerCase() ){
+                  this.isShow = true;
+              }
+            }
         } else {
-            this.timeLeft = 60;
-            alert("Time end");
-            clearInterval(this.interval);
-            
+            alert("Timeout ><")
+            this.back()
         }
         },1000)
     }
+
+    back() {
+      clearInterval(this.interval)
+      this.location.back();
+    }    
     getRandomInt(max) {
       return Math.floor(Math.random() * max);
     }
@@ -76,11 +82,15 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
         }
       }   
     }
+
     nextButton(){
       this.randomWord()
       this.isShow=!this.isShow
-      this.startTimer()
+      clearInterval(this.interval)
       this.yourWord = ""
+      this.timeLeft = 30;
+      this.startTimer()
+      
     }
 
     triggerListening(){
@@ -108,19 +118,12 @@ import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOption
         },error => {
           console.error(error);
         })
-        console.log(this.yourWord.toLowerCase());
-        console.log(this.word.toLowerCase());
-        if (this.yourWord != undefined){
-          if ( this.yourWord.toLowerCase() === this.word.toLowerCase() ){
-              this.isShow = !this.isShow;
-              clearInterval(this.interval)
-              this.timeLeft = 60;
-          }
-        }
+        
     }
 
     test_tts(){
         this.DataService.sound(this.word);
     }
-        
+
+    
   }

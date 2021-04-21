@@ -5,7 +5,7 @@
     <label [text]="yourWord"></label>
     <button text="Listen" (tap)="test_tts()"></button> 
     <button (tap)="triggerListening()" text="Speak"></button>
-    <button (tap)="stopListening()" text="OK" ></button>
     <button text="Next" (tap)="nextButton()" *ngIf="isShow === true"></button>
+    <button (tap)="back()" text="BACK" ></button>
 
 </StackLayout>

@@ -5,6 +5,7 @@ import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
 import { isAvailable, requestCameraPermissions, takePicture } from '@nativescript/camera';
 import { knownFolders,ImageSource} from '@nativescript/core';
+import * as application from "@nativescript/core/application";
 
 @Component({
     selector: "detail",
@@ -28,6 +29,13 @@ export class DetailComponent implements OnInit {
                 this.yourWord = transcription.text;
                 console.log(typeof(this.yourWord));
                 }
+        }
+
+        if (application.android){
+          application.android.on(application.AndroidApplication.activityBackPressedEvent,() =>{
+            clearInterval(this.interval)
+            console.log("BACK")
+          })
         }
     }
 

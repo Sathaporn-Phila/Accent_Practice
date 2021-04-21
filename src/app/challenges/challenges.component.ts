@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { DataService } from '../services/data.service'
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
 import { Location } from "@angular/common";
+import * as application from "@nativescript/core/application";
+
 @Component({
     selector: 'ns-challenges',
     templateUrl: './challenges.component.html',
@@ -33,6 +35,13 @@ import { Location } from "@angular/common";
             }
         }
         this.temp = this.DataService.getAllWord();
+
+        if (application.android){
+          application.android.on(application.AndroidApplication.activityBackPressedEvent,(args: any) =>{
+            clearInterval(this.interval)
+            console.log("BACK")
+          })
+        }
     }
     
     ngOnInit(): void {

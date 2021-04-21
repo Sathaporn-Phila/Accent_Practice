@@ -61,10 +61,16 @@ export class DetailComponent implements OnInit {
         this.speech_listen.requestPermission().then((granted: boolean) => {
           console.log("Granted? " + granted);
         });
-        
+        this.startTimer();
     }
-    
+    timeLeft = 60;
+    interval;
+    startTimer() {
+      clearInterval(this.interval)
+      this.interval = setInterval(() => { },1000)
+  }
     back() {
+      clearInterval(this.interval)
       this.location.back();
   }
 

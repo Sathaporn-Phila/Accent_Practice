@@ -1,14 +1,23 @@
+<ActionBar>
+    <ActionItem android.position="right" icon="✏️" (tap)="goEdit()">
+        <label text="✏️" ></label>
+    </ActionItem>
+    <ActionItem android.position="right" (tap)="deleteWord()">
+        <label text="🗑" ></label>
+    </ActionItem>
+    <ActionItem android.position="left" (tap)="back()">
+        <label text="↩" class="backButton"></label>
+    </ActionItem>
+</ActionBar>
 <ScrollView>
     <StackLayout>
         <Label  [text]="word.word"></Label>
         <Label  [text]="word.defi"></Label>
         <Label [text] = "yourWord"></Label>
-        <button (tap)="triggerListening()" text="Speak"></button>
+        <button (tap)="triggerListening()" text="🎙"></button>
         <button (tap)="stopListening()" text="OK" ></button>
-        <button (tap)="test_tts()" text="Sound" ></button>
-        <button text="Edit" (tap)="goEdit()"></button>
-        <button text="Delete" (tap)="deleteWord()"></button>
-        <Button text="Capture" (tap)="capture()" class="btn btn-primary"></Button>
+        <button (tap)="test_tts()" text="🔈" ></button>
+        <Button text="📸" (tap)="capture()" class="btn btn-primary"></Button>
         <Image [src]="picture" width="300" height="300"></Image>
     </StackLayout>
 </ScrollView>

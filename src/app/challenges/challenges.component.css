@@ -2,7 +2,7 @@ button{
     margin-bottom: 10;
     border-radius: 50;
     border-width: 5;
-    background-color: royalblue;
+    background-color: whitesmoke;
 }
 button:active{
     background-color: salmon;
@@ -10,4 +10,8 @@ button:active{
 label{
     font-size: 20px;
     text-align: center;
+}
+.backButton{
+    font-size: 30px;
+    margin-top: -5;
 }

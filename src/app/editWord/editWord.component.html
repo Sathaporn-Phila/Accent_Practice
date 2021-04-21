@@ -1,6 +1,7 @@
 <StackLayout>
     <label text="Edit Word"></label>
-    <TextField #word hint="New Word"></TextField>
-    <TextField #definition hint="New definition"></TextField>
-    <button text="Edit" (tap)="edit(word.text, definition.text); word.text=''; definition.text=''"></button>    
+    <TextField #wordLabel [hint]="word.word"></TextField>
+    <TextField #definition [hint]="word.defi"></TextField>
+    <button text="Save" (tap)="edit(wordLabel.text, definition.text); word.text=''; definition.text=''"></button>
+    <button text="Cancel" (tap)="back()"></button>    
 </StackLayout>

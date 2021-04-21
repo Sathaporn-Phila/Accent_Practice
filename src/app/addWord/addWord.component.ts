@@ -22,4 +22,7 @@ export class AddWordComponent implements OnInit {
             this.location.back();
         }
     }
+    back(){
+        this.location.back();
+    }
 }

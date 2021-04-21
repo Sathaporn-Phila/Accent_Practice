@@ -14,3 +14,7 @@ button:active{
     border-width: 5;
     color: salmon;
 }
+.backButton{
+    font-size: 30px;
+    margin-top: -5;
+}

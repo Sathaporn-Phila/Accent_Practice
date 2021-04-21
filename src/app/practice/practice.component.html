@@ -1,3 +1,11 @@
+<ActionBar> 
+    <ActionItem android.position="right" [nsRouterLink]="['/addWord']">
+        <label text="➕"></label>
+    </ActionItem>
+    <ActionItem android.position="left" (tap)="back()">
+        <label text="↩" class="backButton"></label>
+    </ActionItem>
+</ActionBar>
 <StackLayout>
     <Button *ngFor="let word of words" text="{{ word.word }}"  (tap)="goDetail(word.word)"></Button>
 </StackLayout>

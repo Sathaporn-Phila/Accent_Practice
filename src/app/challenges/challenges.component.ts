@@ -13,13 +13,15 @@ import { Location } from "@angular/common";
     words : Array<any>
     indexList = [];
     word : string;
+    labelWord : string;
     defi: string;
+    labelDefinition : string;
     index: number;
     isShow = false ;
     options : SpeechRecognitionOptions;
     yourWord : string;
     temp :  Array<any>
-    yourScore = 0;
+    
     constructor(private location: Location,private speech_listen : SpeechRecognition , private DataService: DataService,private router:Router) {
         this.options = {
             locale : 'en-US',
@@ -39,6 +41,7 @@ import { Location } from "@angular/common";
         this.startTimer()
     }
     timeLeft: number = 30;
+    time = "Time : " + String(this.timeLeft)
     interval;
 
     startTimer() {
@@ -47,6 +50,7 @@ import { Location } from "@angular/common";
           console.log(this.timeLeft)
         if(this.timeLeft > 0) {
             this.timeLeft--;
+            this.time = "Time : " + String(this.timeLeft)
             if (this.yourWord != undefined){
               if ( this.yourWord.toLowerCase() === this.word.toLowerCase() ){
                   this.isShow = true;
@@ -74,7 +78,9 @@ import { Location } from "@angular/common";
 
       this.index = this.getRandomInt(this.indexList.length);
       this.word = this.words[this.indexList[this.index]].word;
+      this.labelWord = "Word : "+ this.word
       this.defi = this.words[this.indexList[this.index]].defi;
+      this.labelDefinition = "Definition : " + this.defi
       this.indexList.splice(this.index, 1);
       if (this.indexList.length === 0 ){
         for(let i;i<this.words.length;i++){

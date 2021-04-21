@@ -2,5 +2,6 @@
     <label text="Add Word"></label>
     <TextField #word hint="Word"></TextField>
     <TextField #definition hint="definition"></TextField>
-    <button text="Add" (tap)="add(word.text, definition.text); word.text=''; definition.text=''"></button>    
+    <button text="Add" (tap)="add(word.text, definition.text); word.text=''; definition.text=''"></button> 
+    <button text="Cancel" (tap)="back()"></button>     
 </StackLayout>

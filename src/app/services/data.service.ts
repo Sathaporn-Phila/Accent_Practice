@@ -4,6 +4,7 @@ import * as AppSettings from '@nativescript/core/application-settings'
 export interface Data {
     word: string
     defi: string
+    wordImage : any
   }
 
 @Injectable({
@@ -12,9 +13,9 @@ export interface Data {
 
 export class DataService {
   private Datas = new Array<Data>(
-    { word: "Dog", defi: 'สุนัข' },
-    { word: "Cat", defi: 'เเมว' },
-    { word: "Pig", defi: 'หมู' },
+    { word: "Dog", defi: 'สุนัข' , wordImage : null},
+    { word: "Cat", defi: 'เเมว' , wordImage : null},
+    { word: "Pig", defi: 'หมู'  , wordImage : null},
   )
   speakOptions:SpeakOptions;
   constructor(private tts:TNSTextToSpeech){
@@ -50,7 +51,7 @@ export class DataService {
     //console.log(AppSettings.getBoolean("firstRun"));
   }
   add(word:string, definition:string){
-    this.Datas.push({word: word, defi: definition})
+    this.Datas.push({word: word, defi: definition , wordImage : null})
     AppSettings.setString("myDatas", JSON.stringify(this.Datas));
   }
   edit(word:string, nWord:string, definition:string){
@@ -70,4 +71,15 @@ export class DataService {
     }
     AppSettings.setString("myDatas", JSON.stringify(this.Datas));
   }
+
+  addImage(word:string , imagePath:string){
+    for(let i =0;i<this.Datas.length;i++){
+      if(this.Datas[i].word === word){
+        this.Datas[i].wordImage = imagePath;
+      }
+    }
+    AppSettings.setString("myDatas", JSON.stringify(this.Datas));
+  }
+
+  
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
 import { isAvailable, requestCameraPermissions, takePicture } from '@nativescript/camera';
+import { knownFolders,ImageSource} from '@nativescript/core';
 
 @Component({
     selector: "detail",
@@ -17,7 +18,7 @@ export class DetailComponent implements OnInit {
     word: any;
     yourWord =  "ลองกดปุ่มพูดดูสิ";
     constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService, private router:Router) {
-        this.picture = "~/app/practice/black.png";
+        
         this.word = {};
         this.options = {
             locale : 'en-US',
@@ -45,8 +46,14 @@ export class DetailComponent implements OnInit {
           console.log('No camera detected of available.');
         }
         this.route.params.subscribe(params => {
-            this.word = this.data.getWord(params["word"]);
-        });
+          this.word = this.data.getWord(params["word"]);
+          
+          if (this.word.wordImage != null){
+            this.picture = this.word.wordImage;
+          }else{
+            this.picture = "~/app/practice/black.png";;
+          }
+      });
         this.speech_listen.available().then(
           (available: boolean) => console.log(available ? "YES!" : "NO"),
           (err: string) => console.log(err)
@@ -102,7 +109,19 @@ export class DetailComponent implements OnInit {
   
       takePicture(options)
         .then(imageAsset => {
-          this.picture = imageAsset;
+          var that = this // ทำไมใช้ this บ่ได้
+          
+          ImageSource.fromAsset(imageAsset).then(function(imageSource){
+            var folder = knownFolders.documents();
+            var path = folder.getFolder("asd").getFile("path.jpg");
+            console.log(path.path)
+            imageSource.saveToFile(path.path, "jpg");
+
+            that.picture = path.path;
+            that.data.addImage(that.word.word,path.path);
+          })
+
+          
         }).catch(function (err) {
           console.log("Error -> " + err.message);
         });

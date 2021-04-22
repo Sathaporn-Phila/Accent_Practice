@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
+import { Dialogs } from "@nativescript/core";
 
 import { DataService } from "../services/data.service";
 
@@ -28,4 +29,19 @@ export class EditWordComponent implements OnInit {
     back(){
         this.location.back();
     }
+    
+    deleteWord(){
+        Dialogs.confirm({
+          title: "Confirm Deleting",
+          message: "Confirm to delete word",
+          cancelButtonText: "Cancel",
+          okButtonText: "Comfirm"
+        }).then(r =>{
+          console.log(r);
+          if(r){
+            this.DataService.delete(this.word.word)
+            this.back()
+          }
+        });   
+      }
 }

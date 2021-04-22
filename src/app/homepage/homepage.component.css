@@ -17,3 +17,6 @@ Button:active{
     color: blue;
     text-decoration: underline;
 }
+ActionBar{
+    text-align: center;
+}

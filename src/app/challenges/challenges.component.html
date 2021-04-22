@@ -1,7 +1,5 @@
 <ActionBar> 
-    <ActionItem android.position="left" (tap)="back()">
-        <label text="↩" class="backButton"></label>
-    </ActionItem>
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="back()"></NavigationButton>
 </ActionBar>
 <StackLayout>
     <label [text]="time"></label>
@@ -9,6 +7,6 @@
     <label [text]="labelDefinition"></label>
     <label [text]="yourWord"></label>
     <button text="🔊" (tap)="test_tts()"></button> 
-    <button (tap)="triggerListening()" text="🎙"></button>
+    <button (tap)="triggerListening()" text="🎤"></button>
     <button text="Next" (tap)="nextButton()" *ngIf="isShow === true"></button>
 </StackLayout>

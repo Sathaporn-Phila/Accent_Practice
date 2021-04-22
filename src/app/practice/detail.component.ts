@@ -18,7 +18,9 @@ export class DetailComponent implements OnInit {
     public picture: any;
     options : SpeechRecognitionOptions;
     word: any;
-    yourWord =  "ลองกดปุ่มพูดดูสิ";
+    labelWord : string;
+    labelDefinition : string;
+    yourWord =  "";
     constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService, private router:Router) {
         
         this.word = {};
@@ -71,8 +73,11 @@ export class DetailComponent implements OnInit {
           console.log("Granted? " + granted);
         });
         this.startTimer();
+        this.labelWord = "Word :"+ this.word.word;
+        this.labelDefinition = "Definition : "+this.word.defi;
     }
     timeLeft = 60;
+    
     interval;
     startTimer() {
       clearInterval(this.interval)
@@ -115,21 +120,7 @@ export class DetailComponent implements OnInit {
       this.router.navigate(["/edit",this.word.word])
 
     }
-    deleteWord(){
-      Dialogs.confirm({
-        title: "Confirm Deleting",
-        message: "Confirm to delete word",
-        cancelButtonText: "Cancel",
-        okButtonText: "Comfirm"
-      }).then(r =>{
-        console.log(r);
-        if(r){
-          clearInterval(this.interval)
-          this.data.delete(this.word.word)
-          this.back()
-        }
-      });   
-    }
+    
     capture(): void {
       var options = { width: 300, height: 300, keepAspectRatio: true, saveToGallery: false };
   

@@ -2,19 +2,14 @@
     <ActionItem android.position="right" icon="✏️" (tap)="goEdit()">
         <label text="✏️" ></label>
     </ActionItem>
-    <ActionItem android.position="right" (tap)="deleteWord()">
-        <label text="🗑" ></label>
-    </ActionItem>
-    <ActionItem android.position="left" (tap)="back()">
-        <label text="↩" class="backButton"></label>
-    </ActionItem>
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="back()"></NavigationButton>
 </ActionBar>
 <ScrollView>
     <StackLayout>
-        <Label  [text]="word.word"></Label>
-        <Label  [text]="word.defi"></Label>
+        <Label  [text]="labelWord"></Label>
+        <Label  [text]="labelDefinition"></Label>
         <Label [text] = "yourWord"></Label>
-        <button (tap)="triggerListening()" text="🎙"></button>
+        <button (tap)="triggerListening()" text="🎤"></button>
         <button (tap)="test_tts()" text="🔊" ></button>
         <Button text="📸" (tap)="capture()" class="btn btn-primary"></Button>
         <Image [src]="picture" width="300" height="300"></Image>

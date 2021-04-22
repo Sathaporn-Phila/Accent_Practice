@@ -23,3 +23,7 @@ The following CSS rule changes the font size of all Buttons that have the
 Button.-primary {
   font-size: 18;
 }
+ActionBar{
+  background-color: rgb(98, 183, 253);
+  text-align: center;
+}

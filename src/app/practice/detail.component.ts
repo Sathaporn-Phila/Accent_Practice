@@ -1,5 +1,4 @@
 import { Component, OnInit, NgZone } from "@angular/core";
-import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
@@ -20,7 +19,7 @@ export class DetailComponent implements OnInit {
     labelWord : string;
     labelDefinition : string;
     yourWord =  "";
-    constructor(private speech_listen : SpeechRecognition ,private location: Location, private route: ActivatedRoute, private data: DataService, private router:Router) {
+    constructor(private speech_listen : SpeechRecognition , private route: ActivatedRoute, private data: DataService, private router:Router) {
         
         this.word = {};
         this.options = {
@@ -86,7 +85,7 @@ export class DetailComponent implements OnInit {
   }
     back() {
       clearInterval(this.interval)
-      this.location.back();
+      this.router.navigate(["/practice"])
   }
 
     triggerListening(){

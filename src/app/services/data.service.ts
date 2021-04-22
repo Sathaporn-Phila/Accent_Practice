@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
+import { Dialogs } from "@nativescript/core";
 import * as AppSettings from '@nativescript/core/application-settings'
 export interface Data {
     word: string
@@ -51,8 +52,20 @@ export class DataService {
     //console.log(AppSettings.getBoolean("firstRun"));
   }
   add(word:string, definition:string){
-    this.Datas.push({word: word, defi: definition , wordImage : null})
-    AppSettings.setString("myDatas", JSON.stringify(this.Datas));
+    let temp = []
+    for(let i =0;i<this.Datas.length;i++){
+      temp.push(this.Datas[i].word.toLowerCase())
+    }
+    if(!temp.includes(word.toLowerCase())){
+      this.Datas.push({word: word, defi: definition , wordImage : null})
+      AppSettings.setString("myDatas", JSON.stringify(this.Datas));
+    }else{
+      Dialogs.alert({
+        title: "Add word failed",
+        message: "Already add this word",
+        okButtonText: "OK"
+      })
+    }
   }
   edit(word:string, nWord:string, definition:string){
     for(let i =0;i<this.Datas.length;i++){

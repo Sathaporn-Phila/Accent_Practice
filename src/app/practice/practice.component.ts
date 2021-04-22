@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router";
-import { Location } from "@angular/common";
 import { DataService } from '../services/data.service'
 
 @Component({
@@ -11,7 +10,7 @@ import { DataService } from '../services/data.service'
 export class Practicecomponent implements OnInit {
     
     
-    constructor(private DataService: DataService , private router: Router, private location: Location) {
+    constructor(private DataService: DataService , private router: Router) {
         
     }
     words : Array<any>
@@ -24,6 +23,6 @@ export class Practicecomponent implements OnInit {
         this.router.navigate(["/practice", word]);
     }
     back() {
-        this.location.back();
+        this.router.navigate(["/homepage"]);
     }
 }

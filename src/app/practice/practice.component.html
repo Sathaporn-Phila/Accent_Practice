@@ -4,6 +4,6 @@
 <ScrollView>
     <StackLayout>
         <Button *ngFor="let word of words" text="{{ word.word }}"  (tap)="goDetail(word.word)"></Button>
-        <button text="➕" [nsRouterLink]="['/addWord']"></button>
+        <button text="+" [nsRouterLink]="['/addWord']"></button>
     </StackLayout>
 </ScrollView>

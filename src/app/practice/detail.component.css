@@ -1,6 +1,6 @@
 label{
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
 }
 button{
     margin-bottom: 10;
@@ -14,8 +14,4 @@ button:active{
     border-radius: 50;
     border-width: 5;
     color: salmon;
-}
-.backButton{
-    font-size: 30px;
-    margin-top: -5;
 }

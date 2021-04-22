@@ -4,6 +4,7 @@ button{
     border-width: 5;
     background-color: royalblue;
     color:  white;
+    font-size: 20px;
 }
 button:active{
     margin-bottom: 10;
@@ -13,6 +14,9 @@ button:active{
 }
 label{
     color: navy;
-    font-size: 20px;
+    font-size: 27px;
     text-align: center;
+}
+TextField{
+    font-size: 20px;
 }

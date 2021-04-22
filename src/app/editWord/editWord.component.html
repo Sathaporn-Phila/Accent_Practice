@@ -9,4 +9,6 @@
     <TextField #wordLabel [hint]="word.word"></TextField>
     <TextField #definition [hint]="word.defi"></TextField>
     <button text="Save" (tap)="edit(wordLabel.text, definition.text); word.text=''; definition.text=''"></button>
+    <Button text="📸" (tap)="capture()"></Button>
+    <Image [src]="picture" width="300" height="300"></Image>
 </StackLayout>

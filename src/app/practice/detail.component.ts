@@ -5,7 +5,6 @@ import { DataService } from "../services/data.service";
 import {SpeechRecognition,SpeechRecognitionTranscription,SpeechRecognitionOptions } from 'nativescript-speech-recognition'
 import { isAvailable, requestCameraPermissions, takePicture } from '@nativescript/camera';
 import { knownFolders,ImageSource} from '@nativescript/core';
-import { Dialogs } from "@nativescript/core";
 import * as application from "@nativescript/core/application";
 
 @Component({
@@ -56,6 +55,7 @@ export class DetailComponent implements OnInit {
         }else {
           console.log('No camera detected of available.');
         }
+
         this.route.params.subscribe(params => {
           this.word = this.data.getWord(params["word"]);
           
@@ -65,6 +65,7 @@ export class DetailComponent implements OnInit {
             this.picture = "~/app/practice/black.png";;
           }
       });
+
         this.speech_listen.available().then(
           (available: boolean) => console.log(available ? "YES!" : "NO"),
           (err: string) => console.log(err)
@@ -73,7 +74,7 @@ export class DetailComponent implements OnInit {
           console.log("Granted? " + granted);
         });
         this.startTimer();
-        this.labelWord = "Word :"+ this.word.word;
+        this.labelWord = "Word : "+ this.word.word;
         this.labelDefinition = "Definition : "+this.word.defi;
     }
     timeLeft = 60;

@@ -57,8 +57,10 @@ export class DataService {
   edit(word:string, nWord:string, definition:string){
     for(let i =0;i<this.Datas.length;i++){
       if(this.Datas[i].word === word){
-        this.Datas[i].word = nWord
-        this.Datas[i].defi = definition
+        if(nWord != "" && definition != ""){
+          this.Datas[i].word = nWord
+          this.Datas[i].defi = definition
+        }
       }
     }
     AppSettings.setString("myDatas", JSON.stringify(this.Datas));

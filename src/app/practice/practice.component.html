@@ -4,7 +4,7 @@
 <StackLayout>
     <GridLayout rows="auto" columns="50, *" margin="5" marginTop="15">
         <label text="Search word : " row="0" col="0" id="search-label"></label>
-        <TextField hint="Enter your word here" #keyword row="0" col="1" class="text-input" (textChange)="filter(keyword.text)"></TextField>
+        <TextField hint="Enter your word here" #keyword row="0" col="1" class="text-input" (textChange)="search(keyword.text)"></TextField>
     </GridLayout>
     <ScrollView>
         <StackLayout>

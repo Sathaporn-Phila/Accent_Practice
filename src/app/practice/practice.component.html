@@ -1,9 +1,17 @@
 <ActionBar> 
     <NavigationButton android.systemIcon="ic_menu_back" (tap)="back()"></NavigationButton>
 </ActionBar>
-<ScrollView>
-    <StackLayout>
-        <Button *ngFor="let word of words" text="{{ word.word }}"  (tap)="goDetail(word.word)"></Button>
-        <button text="+" [nsRouterLink]="['/addWord']"></button>
-    </StackLayout>
-</ScrollView>
+<StackLayout>
+    <GridLayout rows="auto" columns="50, *" margin="5" marginTop="15">
+        <label text="Search word : " row="0" col="0" id="search-label"></label>
+        <TextField hint="Enter your word here" #keyword row="0" col="1" class="text-input" (textChange)="filter(keyword.text)"></TextField>
+    </GridLayout>
+    <ScrollView>
+        <StackLayout>
+            <div *ngIf="this.words.length>0">
+                <Button *ngFor="let word of words" text="{{ word.word }}"  (tap)="goDetail(word.word)"></Button>
+            </div>
+            <button text="+" [nsRouterLink]="['/addWord']"></button>
+        </StackLayout>
+    </ScrollView>
+</StackLayout>

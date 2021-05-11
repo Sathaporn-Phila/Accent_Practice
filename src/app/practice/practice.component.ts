@@ -9,14 +9,17 @@ import { DataService } from '../services/data.service'
   })
 export class Practicecomponent implements OnInit {
     
-    
     constructor(private DataService: DataService , private router: Router) {
         
     }
-    words : Array<any>
+    
+    words : Array<any>;
+    original_words: Array<any>;
+    word_compare: string;
     ngOnInit(): void {
+        this.original_words = this.DataService.getAllWord()
         this.words = this.DataService.getAllWord()
-        console.log(this.words)
+        
     }
     
     goDetail(word : string){

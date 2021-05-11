@@ -11,4 +11,6 @@ button:active{
     border-width: 5;
     color: salmon;
 }
-
+#search-label{
+    vertical-align: text-bottom;
+}
